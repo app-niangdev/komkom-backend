@@ -30,8 +30,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/niangdev03/komkom-back:latest
-            ghcr.io/niangdev03/komkom-back:${{ steps.vars.outputs.sha }}
+            ghcr.io/app-niangdev/komkom-back:latest
+            ghcr.io/app-niangdev/komkom-back:${{ steps.vars.outputs.sha }}
 
   deploy:
     needs: build-and-push
