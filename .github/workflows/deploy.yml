@@ -37,6 +37,39 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
+      - name: Vérifier les secrets
+        run: |
+          echo "===== Vérification configuration ====="
+
+          if [ -n "${{ secrets.VPS_HOST }}" ]; then
+            echo "✅ VPS_HOST est défini"
+          else
+            echo "❌ VPS_HOST est VIDE"
+          fi
+
+          if [ -n "${{ secrets.VPS_USERNAME }}" ]; then
+            echo "✅ VPS_USERNAME est défini"
+          else
+            echo "❌ VPS_USERNAME est VIDE"
+          fi
+
+          if [ -n "${{ secrets.VPS_SSH_KEY }}" ]; then
+            echo "✅ VPS_SSH_KEY est défini"
+          else
+            echo "❌ VPS_SSH_KEY est VIDE"
+          fi
+
+          if [ -n "${{ secrets.GHCR_USERNAME }}" ]; then
+            echo "✅ GHCR_USERNAME est défini"
+          else
+            echo "❌ GHCR_USERNAME est VIDE"
+          fi
+
+          if [ -n "${{ secrets.GHCR_TOKEN }}" ]; then
+            echo "✅ GHCR_TOKEN est défini"
+          else
+            echo "❌ GHCR_TOKEN est VIDE"
+          fi
       - uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
