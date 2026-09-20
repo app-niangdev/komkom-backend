@@ -14,11 +14,12 @@ RUN composer dump-autoload --optimize --no-dev
 FROM php:8.3-fpm-alpine AS runtime
 
 RUN apk add --no-cache \
+        nginx \
+        supervisor \
         postgresql-dev \
         libzip-dev \
         oniguruma-dev \
         icu-dev \
-        supervisor \
     && docker-php-ext-install \
         pdo \
         pdo_pgsql \
