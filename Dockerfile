@@ -13,8 +13,19 @@ RUN composer dump-autoload --optimize --no-dev
 
 FROM php:8.3-fpm-alpine AS runtime
 
-RUN apk add --no-cache nginx supervisor postgresql-dev libzip-dev oniguruma-dev \
-    && docker-php-ext-install pdo pdo_pgsql pgsql mbstring zip bcmath
+RUN apk add --no-cache \
+        postgresql-dev \
+        libzip-dev \
+        oniguruma-dev \
+        icu-dev \
+    && docker-php-ext-install \
+        pdo \
+        pdo_pgsql \
+        pgsql \
+        mbstring \
+        zip \
+        bcmath \
+        intl
 
 WORKDIR /var/www
 COPY --from=vendor /app /var/www
