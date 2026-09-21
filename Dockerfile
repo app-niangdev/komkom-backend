@@ -37,8 +37,7 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-RUN addgroup -g 1000 laravel && adduser -G laravel -u 1000 -D laravel \
-    && chown -R laravel:laravel /var/www \
+RUN chown -R www-data:www-data /var/www \
     && chmod -R 775 storage bootstrap/cache
 
 ENV APP_ENV=production
