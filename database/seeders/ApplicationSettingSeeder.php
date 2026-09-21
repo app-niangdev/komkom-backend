@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\ApplicationSetting;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ApplicationSettingSeeder extends Seeder
@@ -13,16 +12,18 @@ class ApplicationSettingSeeder extends Seeder
      */
     public function run(): void
     {
-        ApplicationSetting::create([
-            'logo' => null,
-            'name' => 'JamonoDév',
-            'address' => 'Dakar',
-            'short_name' => 'Jamonodev',
-            'email' => 'jamonodev@gmail.com',
-            'phone_one' => '771234567',
-            'phone_two' => '771234567',
-            'slogan'=>'Jamonodev',
-            'image_size'=>2048
-        ]);
+        ApplicationSetting::firstOrCreate(
+            ['email' => 'jamonodev@gmail.com'],
+            [
+                'logo' => null,
+                'name' => 'JamonoDév',
+                'address' => 'Dakar',
+                'short_name' => 'Jamonodev',
+                'phone_one' => '771234567',
+                'phone_two' => '771234567',
+                'slogan'=>'Jamonodev',
+                'image_size'=>2048
+            ]
+        );
     }
 }

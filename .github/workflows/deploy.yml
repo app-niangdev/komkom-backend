@@ -48,7 +48,7 @@ jobs:
             docker compose pull backend
             docker compose up -d
             docker compose exec -T backend php artisan migrate --force
-            docker compose exec -T backend php artisan db:seed
+            docker compose exec -T backend php artisan db:seed --force
             docker compose exec -T backend php artisan optimize
 
       - uses: appleboy/ssh-action@v1
